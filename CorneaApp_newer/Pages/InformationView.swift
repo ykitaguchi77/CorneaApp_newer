@@ -52,6 +52,7 @@ struct Informations: View {
                             .onChange(of: user.selected_side) {_ in
                                 self.user.isSendData = false
                                 }
+                            .pickerStyle(SegmentedPickerStyle())
                         
                         Picker(selection: $user.selected_disease,
                                    label: Text("疾患")) {
@@ -76,7 +77,6 @@ struct Informations: View {
                  }
             }
                 
-            
             Spacer()
             Button(action: {
                 self.presentationMode.wrappedValue.dismiss()
@@ -93,5 +93,7 @@ struct Informations: View {
                 .sheet(isPresented: self.$goTakePhoto) {
                      CameraPage(user: user)
                 }
+        
+            
     }
 }
