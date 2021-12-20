@@ -23,6 +23,10 @@ struct Imagepicker : UIViewControllerRepresentable {
         let controller = UIImagePickerController()
         controller.sourceType = sourceType
         controller.delegate = context.coordinator
+        controller.cameraCaptureMode = .photo // Default media type .photo vs .video
+        controller.cameraDevice = .rear // rear Vs front
+        controller.cameraFlashMode = .on // on, off Vs auto
+        controller.videoQuality = .typeHigh
         
         return controller
     }
