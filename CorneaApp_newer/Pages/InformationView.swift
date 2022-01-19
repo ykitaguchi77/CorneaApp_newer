@@ -25,52 +25,56 @@ struct Informations: View {
                     
                     //DatePicker("入力日時", selection: $user.date)
                     
-                    HStack{
-                        Text(" I D ")
+                    HStack {
+                        Text("I D ")
                         TextField("idを入力してください", text: $user.id)
-                        }.onChange(of: user.id) { _ in
+                        .keyboardType(.numbersAndPunctuation)
+                        .onChange(of: user.id) { _ in
                             self.user.isSendData = false
                             }
+                        ScanButton(text: $user.id)
+                        .frame(width: 100, height: 30, alignment: .leading)
+                    }
                         
-                        Picker(selection: $user.selected_hospital,
-                                   label: Text("施設")) {
-                            ForEach(0..<user.hospitals.count) {
-                                Text(self.user.hospitals[$0])
-                                     }
+                    Picker(selection: $user.selected_hospital,
+                               label: Text("施設")) {
+                        ForEach(0..<user.hospitals.count) {
+                            Text(self.user.hospitals[$0])
+                                 }
+                        }
+                       .onChange(of: user.selected_hospital) {_ in
+                           self.user.isSendData = false
+                           UserDefaults.standard.set(user.selected_hospital, forKey:"hospitaldefault")
+                       }
+                
+                    Picker(selection: $user.selected_side,
+                               label: Text("右or左")) {
+                        ForEach(0..<user.side.count) {
+                            Text(self.user.side[$0])
+                                }
+                        }
+                        .onChange(of: user.selected_side) {_ in
+                            self.user.isSendData = false
                             }
-                           .onChange(of: user.selected_hospital) {_ in
-                               self.user.isSendData = false
-                               UserDefaults.standard.set(user.selected_hospital, forKey:"hospitaldefault")
+                        .pickerStyle(SegmentedPickerStyle())
+                    
+                    Picker(selection: $user.selected_disease,
+                               label: Text("疾患")) {
+                        ForEach(0..<user.disease.count) {
+                            Text(self.user.disease[$0])
+                                }
+                        }
+                       .onChange(of: user.selected_disease) { _ in
+                           self.user.isSendData = false
                            }
                     
-                        Picker(selection: $user.selected_side,
-                                   label: Text("右or左")) {
-                            ForEach(0..<user.side.count) {
-                                Text(self.user.side[$0])
-                                    }
-                            }
-                            .onChange(of: user.selected_side) {_ in
-                                self.user.isSendData = false
-                                }
-                            .pickerStyle(SegmentedPickerStyle())
-                        
-                        Picker(selection: $user.selected_disease,
-                                   label: Text("疾患")) {
-                            ForEach(0..<user.disease.count) {
-                                Text(self.user.disease[$0])
-                                    }
-                            }
-                           .onChange(of: user.selected_disease) { _ in
-                               self.user.isSendData = false
-                               }
-                        
-                        HStack{
-                            Text("自由記載欄")
-                            TextField("", text: $user.free_disease)
-                                .keyboardType(.default)
-                        }.layoutPriority(1)
-                        .onChange(of: user.free_disease) { _ in
-                        self.user.isSendData = false
+                    HStack{
+                        Text("自由記載欄")
+                        TextField("", text: $user.free_disease)
+                            .keyboardType(.default)
+                    }.layoutPriority(1)
+                    .onChange(of: user.free_disease) { _ in
+                    self.user.isSendData = false
                     }
                 }.navigationTitle("患者情報入力")
                 .onAppear(){
