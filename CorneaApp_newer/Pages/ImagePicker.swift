@@ -61,7 +61,7 @@ struct Imagepicker : UIViewControllerRepresentable {
         else if self.sourceType == .photoLibrary{
             controller.sourceType = sourceType
             controller.delegate = context.coordinator
-            controller.mediaTypes = ["public.image", "public.movie"]
+            controller.mediaTypes = ["public.image"] //photoのみアップロード可
         }
         return controller
     }

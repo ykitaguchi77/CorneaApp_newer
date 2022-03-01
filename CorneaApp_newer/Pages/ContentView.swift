@@ -25,7 +25,7 @@ class User : ObservableObject {
     @Published var isNewData: Bool = false
     @Published var isSendData: Bool = false
     @Published var sourceType: UIImagePickerController.SourceType = .camera //撮影モードがデフォルト
-    @Published var equipmentVideo: Bool = true //video or camera 撮影画面のマージ指標変更のため
+    @Published var equipmentVideo: Bool = false //video or camera 撮影画面のマージ指標変更のため
     }
 
 
@@ -73,50 +73,30 @@ struct ContentView: View {
                 //こう書いておかないとmissing as ancestorエラーが時々でる
             }
             
-            HStack{
-                Button(action: {
-                    self.user.sourceType = UIImagePickerController.SourceType.camera
-                    self.user.equipmentVideo = true
-                    self.goTakePhoto = true /*またはself.show.toggle() */
-                    self.user.isSendData = false //撮影済みを解除
-                    ResultHolder.GetInstance().SetMovieUrls(Url: "")  //動画の保存先をクリア
-                }) {
-                    HStack{
-                        Image(systemName: "video")
-                        Text("動画")
-                    }
-                        .foregroundColor(Color.white)
-                        .font(Font.largeTitle)
-                }
-                    .frame(minWidth:0, maxWidth:CGFloat.infinity, minHeight: 75)
-                    .background(Color.black)
-                    .padding()
-                .sheet(isPresented: self.$goTakePhoto) {
-                    CameraPage(user: user)
-                }
+            
                 
-                Button(action: {
-                    self.user.sourceType = UIImagePickerController.SourceType.camera
-                    self.user.equipmentVideo = false
-                    self.goTakePhoto = true /*またはself.show.toggle() */
-                    self.user.isSendData = false //撮影済みを解除
-                    ResultHolder.GetInstance().SetMovieUrls(Url: "")  //動画の保存先をクリア
-                }) {
-                    HStack{
-                        Image(systemName: "camera")
-                        Text("静止画")
-                    }
-                        .foregroundColor(Color.white)
-                        .font(Font.largeTitle)
+            Button(action: {
+                self.user.sourceType = UIImagePickerController.SourceType.camera
+                self.user.equipmentVideo = false
+                self.goTakePhoto = true /*またはself.show.toggle() */
+                self.user.isSendData = false //撮影済みを解除
+                ResultHolder.GetInstance().SetMovieUrls(Url: "")  //動画の保存先をクリア
+            }) {
+                HStack{
+                    Image(systemName: "camera")
+                    Text("撮影")
                 }
-                    .frame(minWidth:0, maxWidth:CGFloat.infinity, minHeight: 75)
-                    .background(Color.black)
-                    .padding()
-                .sheet(isPresented: self.$goTakePhoto) {
-                    CameraPage(user: user)
-                }
+                    .foregroundColor(Color.white)
+                    .font(Font.largeTitle)
             }
-
+                .frame(minWidth:0, maxWidth:CGFloat.infinity, minHeight: 75)
+                .background(Color.black)
+                .padding()
+            .sheet(isPresented: self.$goTakePhoto) {
+                CameraPage(user: user)
+            }
+        
+            
             //送信するとボタンの色が変わる演出
             if self.user.isSendData {
                 Button(action: {self.goSendData = true /*またはself.show.toggle() */}) {
