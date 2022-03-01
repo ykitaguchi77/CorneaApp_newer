@@ -23,6 +23,8 @@ class ResultHolder{
  
  
     private (set) public var Images: [Int:CGImage] = [:]
+    private (set) public var MovieUrl: String = ""
+    
     public func GetUIImages() -> [UIImage]{
         var uiImages: [UIImage] = []
         let length = Images.count
@@ -38,6 +40,19 @@ class ResultHolder{
     public func SetImage(index: Int, cgImage: CGImage){
         Images[index] = cgImage
     }
+    
+    
+    
+    public func SetMovieUrls(Url:String){
+        print(MovieUrl)
+        MovieUrl = Url
+    }
+    
+    public func GetMovieUrls() ->String{
+        let Url = MovieUrl
+        return Url
+    }
+    
     
     
     public func GetImageJsons() -> [String]{

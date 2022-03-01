@@ -24,6 +24,8 @@ class User : ObservableObject {
     @Published var imageNum: Int = 0 //写真の枚数（何枚目の撮影か）
     @Published var isNewData: Bool = false
     @Published var isSendData: Bool = false
+    @Published var sourceType: UIImagePickerController.SourceType = .camera //撮影モードがデフォルト
+    @Published var equipmentVideo: Bool = true //video or camera 撮影画面のマージ指標変更のため
     }
 
 
@@ -31,15 +33,12 @@ struct ContentView: View {
     @ObservedObject var user = User()
     //CoreDataの取り扱い
     @Environment(\.managedObjectContext) private var viewContext
-    @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Item.newdate, ascending: true)],
-        animation: .default)
-    private var items: FetchedResults<Item>
+
     @State private var goTakePhoto: Bool = false  //撮影ボタン
     @State private var isPatientInfo: Bool = false  //患者情報入力ボタン
     @State private var goSendData: Bool = false  //送信ボタン
-    @State private var savedData: Bool = false  //送信ボタン
-    @State private var newPatient: Bool = false  //送信ボタン
+    @State private var uploadData: Bool = false  //Loadボタン
+    @State private var newPatient: Bool = false  //新規ボタン
     
     
     var body: some View {
@@ -74,24 +73,49 @@ struct ContentView: View {
                 //こう書いておかないとmissing as ancestorエラーが時々でる
             }
             
-            Button(action: {
-                self.goTakePhoto = true /*またはself.show.toggle() */
-                self.user.isSendData = false //撮影済みを解除
-            }) {
-                HStack{
-                    Image(systemName: "camera")
-                    Text("撮影")
+            HStack{
+                Button(action: {
+                    self.user.sourceType = UIImagePickerController.SourceType.camera
+                    self.user.equipmentVideo = true
+                    self.goTakePhoto = true /*またはself.show.toggle() */
+                    self.user.isSendData = false //撮影済みを解除
+                    ResultHolder.GetInstance().SetMovieUrls(Url: "")  //動画の保存先をクリア
+                }) {
+                    HStack{
+                        Image(systemName: "video")
+                        Text("動画")
+                    }
+                        .foregroundColor(Color.white)
+                        .font(Font.largeTitle)
                 }
-                    .foregroundColor(Color.white)
-                    .font(Font.largeTitle)
+                    .frame(minWidth:0, maxWidth:CGFloat.infinity, minHeight: 75)
+                    .background(Color.black)
+                    .padding()
+                .sheet(isPresented: self.$goTakePhoto) {
+                    CameraPage(user: user)
+                }
+                
+                Button(action: {
+                    self.user.sourceType = UIImagePickerController.SourceType.camera
+                    self.user.equipmentVideo = false
+                    self.goTakePhoto = true /*またはself.show.toggle() */
+                    self.user.isSendData = false //撮影済みを解除
+                    ResultHolder.GetInstance().SetMovieUrls(Url: "")  //動画の保存先をクリア
+                }) {
+                    HStack{
+                        Image(systemName: "camera")
+                        Text("静止画")
+                    }
+                        .foregroundColor(Color.white)
+                        .font(Font.largeTitle)
+                }
+                    .frame(minWidth:0, maxWidth:CGFloat.infinity, minHeight: 75)
+                    .background(Color.black)
+                    .padding()
+                .sheet(isPresented: self.$goTakePhoto) {
+                    CameraPage(user: user)
+                }
             }
-                .frame(minWidth:0, maxWidth:CGFloat.infinity, minHeight: 75)
-                .background(Color.black)
-                .padding()
-            .sheet(isPresented: self.$goTakePhoto) {
-                CameraPage(user: user)
-            }
-            
 
             //送信するとボタンの色が変わる演出
             if self.user.isSendData {
@@ -127,10 +151,15 @@ struct ContentView: View {
             }
             
             HStack{
-            Button(action: { self.savedData = true /*またはself.show.toggle() */ }) {
+            Button(action: {
+                self.user.sourceType = UIImagePickerController.SourceType.photoLibrary
+                self.user.isSendData = false //撮影済みを解除
+                self.uploadData = true /*またはself.show.toggle() */
+                
+            }) {
                 HStack{
                     Image(systemName: "folder")
-                    Text("リスト")
+                    Text("Load")
                 }
                     .foregroundColor(Color.white)
                     .font(Font.largeTitle)
@@ -138,8 +167,8 @@ struct ContentView: View {
                 .frame(minWidth:0, maxWidth:200, minHeight: 75)
                 .background(Color.black)
                 .padding()
-            .sheet(isPresented: self.$savedData) {
-                SavedData(user: user)
+            .sheet(isPresented: self.$uploadData) {
+                CameraPage(user: user)
             }
             
             Button(action: { self.newPatient = true /*またはself.show.toggle() */ }) {

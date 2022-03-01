@@ -14,14 +14,13 @@
 		BF60F25B2766E66200DD6253 /* CorneaApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BF60F2592766E66200DD6253 /* CorneaApp.xcdatamodeld */; };
 		BF60F2652766E72A00DD6253 /* CameraPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF60F2642766E72A00DD6253 /* CameraPage.swift */; };
 		BF60F2672766E74A00DD6253 /* InformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF60F2662766E74A00DD6253 /* InformationView.swift */; };
-		BF60F2692766E75B00DD6253 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF60F2682766E75B00DD6253 /* Persistence.swift */; };
-		BF60F26B2766E76B00DD6253 /* SavedDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF60F26A2766E76B00DD6253 /* SavedDataView.swift */; };
 		BF60F26D2766E77800DD6253 /* SendDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF60F26C2766E77800DD6253 /* SendDataView.swift */; };
 		BF60F26F2766E79D00DD6253 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF60F26E2766E79D00DD6253 /* ImagePicker.swift */; };
 		BF60F2712766EA3000DD6253 /* ConstHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF60F2702766EA3000DD6253 /* ConstHolder.swift */; };
 		BF60F2732766EA4000DD6253 /* ResultHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF60F2722766EA4000DD6253 /* ResultHolder.swift */; };
 		BF60F2752766EA5700DD6253 /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF60F2742766EA5700DD6253 /* UIImageExtension.swift */; };
 		BF7DECC1279809C100DA5976 /* ScanButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7DECC0279809C100DA5976 /* ScanButton.swift */; };
+		BFCF8A5F27CE4EAF00F6791E /* MovieCropper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCF8A5E27CE4EAF00F6791E /* MovieCropper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,8 +32,6 @@
 		BF60F25A2766E66200DD6253 /* CorneaApp_newer.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CorneaApp_newer.xcdatamodel; sourceTree = "<group>"; };
 		BF60F2642766E72A00DD6253 /* CameraPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPage.swift; sourceTree = "<group>"; };
 		BF60F2662766E74A00DD6253 /* InformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationView.swift; sourceTree = "<group>"; };
-		BF60F2682766E75B00DD6253 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
-		BF60F26A2766E76B00DD6253 /* SavedDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedDataView.swift; sourceTree = "<group>"; };
 		BF60F26C2766E77800DD6253 /* SendDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendDataView.swift; sourceTree = "<group>"; };
 		BF60F26E2766E79D00DD6253 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		BF60F2702766EA3000DD6253 /* ConstHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstHolder.swift; sourceTree = "<group>"; };
@@ -42,6 +39,7 @@
 		BF60F2742766EA5700DD6253 /* UIImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
 		BF60F2762766F2CE00DD6253 /* CorneaApp_1.1-newer-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CorneaApp_1.1-newer-Info.plist"; sourceTree = SOURCE_ROOT; };
 		BF7DECC0279809C100DA5976 /* ScanButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanButton.swift; sourceTree = "<group>"; };
+		BFCF8A5E27CE4EAF00F6791E /* MovieCropper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCropper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +94,7 @@
 			isa = PBXGroup;
 			children = (
 				BF60F2702766EA3000DD6253 /* ConstHolder.swift */,
+				BFCF8A5E27CE4EAF00F6791E /* MovieCropper.swift */,
 				BF60F2722766EA4000DD6253 /* ResultHolder.swift */,
 				BF60F2742766EA5700DD6253 /* UIImageExtension.swift */,
 				BF7DECC0279809C100DA5976 /* ScanButton.swift */,
@@ -109,8 +108,6 @@
 				BF60F2642766E72A00DD6253 /* CameraPage.swift */,
 				BF60F2502766E66000DD6253 /* ContentView.swift */,
 				BF60F2662766E74A00DD6253 /* InformationView.swift */,
-				BF60F2682766E75B00DD6253 /* Persistence.swift */,
-				BF60F26A2766E76B00DD6253 /* SavedDataView.swift */,
 				BF60F26C2766E77800DD6253 /* SendDataView.swift */,
 				BF60F26E2766E79D00DD6253 /* ImagePicker.swift */,
 				BF60F24E2766E66000DD6253 /* CorneaApp_newer.swift */,
@@ -188,17 +185,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BFCF8A5F27CE4EAF00F6791E /* MovieCropper.swift in Sources */,
 				BF60F26D2766E77800DD6253 /* SendDataView.swift in Sources */,
 				BF60F25B2766E66200DD6253 /* CorneaApp.xcdatamodeld in Sources */,
 				BF7DECC1279809C100DA5976 /* ScanButton.swift in Sources */,
 				BF60F2512766E66000DD6253 /* ContentView.swift in Sources */,
-				BF60F2692766E75B00DD6253 /* Persistence.swift in Sources */,
 				BF60F2672766E74A00DD6253 /* InformationView.swift in Sources */,
 				BF60F2732766EA4000DD6253 /* ResultHolder.swift in Sources */,
 				BF60F2652766E72A00DD6253 /* CameraPage.swift in Sources */,
 				BF60F2752766EA5700DD6253 /* UIImageExtension.swift in Sources */,
 				BF60F26F2766E79D00DD6253 /* ImagePicker.swift in Sources */,
-				BF60F26B2766E76B00DD6253 /* SavedDataView.swift in Sources */,
 				BF60F24F2766E66000DD6253 /* CorneaApp_newer.swift in Sources */,
 				BF60F2712766EA3000DD6253 /* ConstHolder.swift in Sources */,
 			);
@@ -339,6 +335,7 @@
 				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
 				INFOPLIST_KEY_NSCameraUsageDescription = "";
 				INFOPLIST_KEY_NSDocumentsFolderUsageDescription = "";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Need Microphone for acquiring movie to the smartphone";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -374,6 +371,7 @@
 				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
 				INFOPLIST_KEY_NSCameraUsageDescription = "";
 				INFOPLIST_KEY_NSDocumentsFolderUsageDescription = "";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Need Microphone for acquiring movie to the smartphone";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
