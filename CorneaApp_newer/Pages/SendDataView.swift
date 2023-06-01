@@ -191,21 +191,9 @@ struct SendData: View {
     public func GetImageStack(images: [UIImage], shorterSide: CGFloat) -> some View {
             let padding: CGFloat = 10.0
             let imageLength = shorterSide / 3 + padding * 2
-            let colCount = Int(shorterSide / imageLength)
-            let rowCount = Int(ceil(Float(images.count) / Float(colCount)))
+
             return VStack(alignment: .leading) {
-                ForEach(0..<rowCount){
-                    i in
-                    HStack{
-                        ForEach(0..<colCount){
-                            j in
-                            if (i * colCount + j < images.count){
-                                let image = images[i * colCount + j]
-                                Image(uiImage: image).resizable().frame(width: imageLength*2.4, height: imageLength*2.4).padding(padding)
-                            }
-                        }
-                    }
-                }
+                Image(uiImage: images[0]).resizable().frame(width: imageLength*2.4, height: imageLength*2.4).padding(padding)
             }
             .border(Color.black)
         }
