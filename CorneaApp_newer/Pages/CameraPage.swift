@@ -17,6 +17,7 @@ struct CameraPage: View {
     @State var isImagePicker = true
 
     
+    
     var body: some View {
             NavigationView{
                 VStack(spacing:0){
